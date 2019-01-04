@@ -1,0 +1,56 @@
+<div id="expenses-index">
+    <div id="greeting-msg"> Hello, <%= current_user.nickname %></div>
+    <% if current_user.expenses_this_month.present? %>
+    <% id = 1 %>
+    <table id="expenses-table">
+        <tr>
+            <th>#</th>
+            <th>Spent Date</th>
+            <th>Name</th>
+            <th>Price</th>
+        </tr>
+        <% current_user.expenses_this_month.each do |expense| %>
+        <tr>
+            <td>
+                <%= id %>
+            </td>
+            <td>
+                <%= expense.spent_date %>
+            </td>
+            <td>
+                <%= expense.name %>
+            </td>
+            <td>
+                ¥<%= expense.price %>
+            </td>
+        </tr>
+        <% id = id + 1 %>
+        <% end %>
+    </table>
+    <div id="expenses-summary">
+        <p>Total amount spent this month: ¥<%= current_user.total_expenses_this_month %></p>
+        <p>Average daily budget for remaining days: ¥<%= current_user.average_daily_budget_for_remaining_days %></p>
+    </div>
+    <% end %>
+    <%= form_with(url: expenses_path, local: true, id: "expenses-action") do |f| %>
+        <div class="field">
+            <%= f.label :name %><br />
+            <%= f.text_field :name %>
+        </div>
+        <div class="field">
+            <%= f.label :spent_date %><br />
+            <%= f.date_field :spent_date %>
+        </div>
+        <div class="field">
+            <%= f.label :price %><br />
+            <%= f.number_field :price %>
+        </div>
+        <div class="field">
+            <%= f.label "Category" %><br />
+            <%= f.collection_select(:expensecategory_id, Expensecategory.all, :id, :name) %>
+        </div>
+        <div class="actions">
+            <%= f.submit "Add expense" %>
+        </div>
+    <% end %>
+</div>

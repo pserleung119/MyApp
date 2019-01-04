@@ -1,0 +1,3 @@
+expenses:
+  budget: 45000
+  add_successfully: "Your expense is added successfully."

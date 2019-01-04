@@ -1,0 +1,60 @@
+$backgroundColor: #333333;
+$borderColor: #fff;
+$textActiveColor: #fff;
+$textDisabledColor: #777777;
+$headerHeight: 60px;
+
+body {
+    margin: 0;
+    background-color: $backgroundColor;
+    color: $textActiveColor;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+header {
+    position: relative;
+    width: 100%;
+    height: $headerHeight;
+    background-color: $backgroundColor;
+    color: $textActiveColor;
+    border-bottom: 1px solid $borderColor;
+    div {
+        width: 25%;
+        height: 100%;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 150%;
+    }
+}
+
+a {
+    text-decoration: none;
+    color: $textActiveColor;
+}
+a:hover {
+    color: #5448bb;
+}
+
+.notice {
+    height: 20px;
+    margin: 0;
+    padding: 1rem;
+    background: #59bd50;
+    color: $textActiveColor;
+}
+
+.alert {
+    height: 20px;
+    margin: 0;
+    padding: 1rem;
+    background: #bd5450;
+    color: $textActiveColor;
+}
+
+#sign-out-link {
+    position: absolute;
+    right: 1rem;
+    top: 20px;
+}
