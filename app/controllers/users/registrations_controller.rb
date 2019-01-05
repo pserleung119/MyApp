@@ -23,7 +23,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def update
     if params[:user][:budget].present?
       current_user.update!(budget: params[:user][:budget])
-      redirect_to root_path
+      redirect_to expenses_path
     else
       super
     end

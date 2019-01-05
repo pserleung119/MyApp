@@ -15,7 +15,7 @@ class ExpensesController < ApplicationController
       )
     end
     flash[:notice] = Settings.expenses.add_successfully
-    redirect_to root_path
+    redirect_to expenses_path
   end
 
   def edit
