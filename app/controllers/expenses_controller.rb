@@ -1,6 +1,7 @@
 class ExpensesController < ApplicationController
   before_action :authenticate_user!
   before_action :create_params, only: %i[create]
+
   def index
   end
 

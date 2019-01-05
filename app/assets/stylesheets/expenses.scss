@@ -5,12 +5,13 @@
 
 #expenses-index {
     padding: 0.5rem 1rem;
-    #greeting-msg, #expenses-table, #expenses-summary {
+    .block {
         width: 75%;
         min-width: 350px;
         margin: 1rem auto;
     }
-    #expenses-action {
+    #add-expense-form {
+        display: none;
         width: 25%;
         min-width: 150px;
         margin: 1rem auto;

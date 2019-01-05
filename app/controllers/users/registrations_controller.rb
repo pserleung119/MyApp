@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Users::RegistrationsController < Devise::RegistrationsController
-  # before_action :configure_sign_up_params, only: [:create]
+  before_action :update_resource, only: [:edit]
   # before_action :configure_account_update_params, only: [:update]
 
   # GET /resource/sign_up
@@ -20,9 +20,15 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # PUT /resource
-  # def update
-  #   super
-  # end
+  def update
+    if params[:user][:budget].present?
+      current_user.update!(budget: params[:user][:budget])
+      flash[:notice] = "Your budget is updated to ¥#{params[:user][:budget]}"
+      redirect_to root_path
+    else
+      super
+    end
+  end
 
   # DELETE /resource
   # def destroy
@@ -56,9 +62,16 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   def after_sign_up_path_for(_resource)
-    expenses_path
+    root_path
   end
 
+  private
+  def update_resource(resource, params)
+    if params[:user][:budget].present?
+      params.permit(:user[:budget])
+      resource.update_without_password(params)
+    end
+  end
   # The path used after sign up for inactive accounts.
   # def after_inactive_sign_up_path_for(resource)
   #   super(resource)

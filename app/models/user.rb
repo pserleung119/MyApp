@@ -19,6 +19,6 @@ class User < ApplicationRecord
 
   def average_daily_budget_for_remaining_days
     remaining_days = (Time.current.end_of_month - Time.current) / (24 * 60 * 60).floor
-    return ((Settings.expenses.budget - total_expenses_this_month) / remaining_days).floor
+    return ((budget - total_expenses_this_month) / remaining_days).floor
   end
 end

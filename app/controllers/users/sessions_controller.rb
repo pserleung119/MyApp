@@ -26,6 +26,6 @@ class Users::SessionsController < Devise::SessionsController
   # end
   private
   def after_sign_in_path_for(_resource)
-    expenses_path
+    root_path
   end
 end
