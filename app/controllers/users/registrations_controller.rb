@@ -23,7 +23,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def update
     if params[:user][:budget].present?
       current_user.update!(budget: params[:user][:budget])
-      flash[:notice] = "Your budget is updated to ¥#{params[:user][:budget]}"
       redirect_to root_path
     else
       super
