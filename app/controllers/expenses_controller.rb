@@ -21,10 +21,26 @@ class ExpensesController < ApplicationController
   def edit
   end
 
-  def update
+  def update(id)
+    expense = Expense.find_by(id: id)
+    if expense.present?
+      expense.update!(
+        name: params[:name],
+        price: params[:price],
+        spent_date: params[:spent_date],
+        expensecategory_id: params[:expensecategory_id]
+      )
+    else
+      flash[:alert] = Settings.expenses.add_successfully
+    end
+    redirect_to expenses_path
   end
 
-  def destroy
+  def destroy(id)
+    Expense.transaction do
+      current_user.expenses.destroy!(id: id)
+    end
+    redirect_to expenses_path
   end
 
   private

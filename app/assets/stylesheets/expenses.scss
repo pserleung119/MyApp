@@ -35,6 +35,9 @@
         th:nth-of-type(4) {
             width: 10%;
         }
+        th:nth-of-type(5) {
+            width: 5%;
+        }
         td:nth-of-type(1) {
             width: 5%;
             text-align: center;
@@ -47,6 +50,19 @@
         }
         td:nth-of-type(4) {
             width: 10%;
+        }
+        td:nth-of-type(5) {
+            width: 5%;
+            text-align: center;
+            padding-left: 0;
+            padding-right: 0; 
+            img {
+                cursor: pointer;
+                margin-right: 0.2rem; 
+            }
+            a {
+                margin-left: 0.2rem;
+            }
         }
     }
 }

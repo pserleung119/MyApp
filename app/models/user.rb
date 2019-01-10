@@ -6,7 +6,7 @@ class User < ApplicationRecord
   has_many :expenses
 
   def expenses_this_month
-    expenses.where(spent_date: Time.current.beginning_of_month..Time.current.end_of_month)
+    expenses.where(spent_date: Time.current.beginning_of_month..Time.current.end_of_month).order(spent_date: "ASC")
   end
 
   def total_expenses_this_month
