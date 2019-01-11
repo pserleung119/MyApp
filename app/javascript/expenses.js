@@ -2,14 +2,31 @@ import Currency from './currency';
 
 window.addEventListener("load", () => {
     $('#new-expense-btn').on('click', () => {
-        $('#greeting-msg, #budget-setting, #expenses-table, #expenses-summary, #new-expense-btn').fadeOut('fast', () => {
+        $('#greeting-msg, #convert-rate-field, #budget-setting, #expenses-table, #expenses-summary, #new-expense-btn').fadeOut('fast', () => {
             $('#add-expense-form').fadeIn();
         });
     })
 
-    $('#back-to-expense-index-btn').on('click', () => {
-        $('#add-expense-form').fadeOut('fast', () => {
-            $('#greeting-msg, #budget-setting, #expenses-table, #expenses-summary, #new-expense-btn').fadeIn('fast');
+    $('.edit-expense').on('click', (event) => {
+        const expenseId = $(event.currentTarget).attr('target');
+        const rowIndex = $(event.currentTarget).attr('row');
+        $('#greeting-msg, #convert-rate-field, #budget-setting, #expenses-table, #expenses-summary, #new-expense-btn').fadeOut('fast', function() {
+            $('#edit-expense-form').fadeIn().attr({
+                'action' : '/expenses/' + expenseId,
+            });
+            const editForm = $('#edit-expense-form');
+            const row = $('#expenses-table').find('tr')[rowIndex];
+            const targetTd = $(row).find('td');
+            $(editForm).find('input[name="name"]').val($(targetTd[2]).text().trim());
+            $(editForm).find('input[name="spent_date"]').val($(targetTd[1]).text().trim());
+            $(editForm).find('input[name="price"]').val($(targetTd[3]).text().match(/\d+/)[0]);
+            $(editForm).find('#expensecategory_id option[value="' + $(targetTd[4]).find('input').val().toString() + '"]').prop('selected', true);
+        });
+    })
+
+    $('.back-to-expense-index-btn').on('click', () => {
+        $('#add-expense-form, #edit-expense-form').fadeOut('fast', () => {
+            backToExpensesTable();
         })
     })
 
@@ -20,23 +37,6 @@ window.addEventListener("load", () => {
         } else {
             return;
         }
-    })
-
-    $('.edit-expense').on('click', () => {
-        const expenseId = $(this).attr('target');
-        const rowIndex = $(this).attr('row');
-        $('#greeting-msg, #budget-setting, #expenses-table, #expenses-summary, #new-expense-btn').fadeOut('fast', function() {
-            $('#edit-expense-form').fadeIn().attr({
-                'action' : '/expenses/' + expenseId,
-            });
-            const editForm = $('#edit-expense-form');
-            const row = $('#expenses-table').find('tr')[rowIndex];
-            const targetTd = $(row).find('td');
-            $(editForm).find('input[name="name"]').val($(targetTd[2]).text().trim());
-            $(editForm).find('input[name="spent_date"]').val($(targetTd[1]).text().trim())
-            $(editForm).find('input[name="price"]').val($(targetTd[3]).text().match(/\d+/)[0]);
-            $(editForm).find('#expensecategory_id option[value="' + $(targetTd[4]).find('input').val().toString() + '"]').prop('selected', true);
-        });
     })
 
     $('#convert-rate').on('click', () => {
@@ -59,4 +59,8 @@ window.addEventListener("load", () => {
             return;
         });
     })
+
+    let backToExpensesTable = () => {
+        $('#greeting-msg, #convert-rate-field, #budget-setting, #expenses-table, #expenses-summary, #new-expense-btn').fadeIn('fast');
+    }
 },false)
