@@ -11,10 +11,10 @@ export default class Currency {
                 timeout: 5000,
               })
               .done(function(data) {
-                  resolve(data);
+                resolve(data);
               })
-              .fail(function() {
-                  reject('Error!');
+              .fail(function(e) {
+                throw new Error(e.responseText);
               });
         })
 

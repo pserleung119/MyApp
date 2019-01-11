@@ -1,19 +1,19 @@
 import Currency from './currency';
 
-window.addEventListener("load", function() {
-    $('#new-expense-btn').on('click', function() {
-        $('#greeting-msg, #budget-setting, #expenses-table, #expenses-summary, #new-expense-btn').fadeOut('fast', function() {
+window.addEventListener("load", () => {
+    $('#new-expense-btn').on('click', () => {
+        $('#greeting-msg, #budget-setting, #expenses-table, #expenses-summary, #new-expense-btn').fadeOut('fast', () => {
             $('#add-expense-form').fadeIn();
         });
     })
 
-    $('#back-to-expense-index-btn').on('click', function() {
-        $('#add-expense-form').fadeOut('fast', function() {
+    $('#back-to-expense-index-btn').on('click', () => {
+        $('#add-expense-form').fadeOut('fast', () => {
             $('#greeting-msg, #budget-setting, #expenses-table, #expenses-summary, #new-expense-btn').fadeIn('fast');
         })
     })
 
-    $('#save-budget-btn').on('click', function(event) {
+    $('#save-budget-btn').on('click', (event) => {
         event.preventDefault();
         if (window.confirm('Changing your budget to ' + $('#budget-input').val())) {
             $('#edit_user').submit();
@@ -22,7 +22,7 @@ window.addEventListener("load", function() {
         }
     })
 
-    $('.edit-expense').on('click', function() {
+    $('.edit-expense').on('click', () => {
         const expenseId = $(this).attr('target');
         const rowIndex = $(this).attr('row');
         $('#greeting-msg, #budget-setting, #expenses-table, #expenses-summary, #new-expense-btn').fadeOut('fast', function() {
@@ -39,13 +39,13 @@ window.addEventListener("load", function() {
         });
     })
 
-    $('#convert-rate').on('click', function() {
+    $('#convert-rate').on('click', () => {
         // Do nothing if already converted to USD
         if ($('.total-cost').text().match(/^\$/)) {
             return;
         }
         const currency = new Currency;
-        currency.getRate().then(function(data) {
+        currency.getRate().then((data) => {
             const rate = data.JPY_USD.val;
             let convertedTotalCost = 0;
             for (let i = 0; i < $('.cost').length; i++) {
@@ -55,6 +55,8 @@ window.addEventListener("load", function() {
                 $($('.cost')[i]).text('$' + Math.round(convertedCost));
             }
             $('.total-cost').text('$' + Math.round(convertedTotalCost));
+        }).catch((e) => {
+            return;
         });
     })
 },false)
