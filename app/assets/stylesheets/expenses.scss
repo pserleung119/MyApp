@@ -1,7 +1,7 @@
 // Place all the styles related to the Expenses controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-@import "common";
+@import "variables";
 
 #expenses-index {
     padding: 0.5rem 1rem;
@@ -9,6 +9,7 @@
         width: 75%;
         min-width: 350px;
         margin: 1rem auto;
+        font-size: calc(8px + 0.5vw);
     }
     #add-expense-form,
     #edit-expense-form {
@@ -25,41 +26,42 @@
             padding: 0.5rem 1rem;
         }
         th:nth-of-type(1) {
-            width: 5%;
+            width: $expenseIdColWidth;
         }
         th:nth-of-type(2) {
-            width: 10%;
+            width: $expenseDateColWidth;
         }
         th:nth-of-type(3) {
-            width: 15%;
+            width: $expenseNameColWidth;
         }
         th:nth-of-type(4) {
-            width: 10%;
+            width: $expenseCostColWidth;
         }
         th:nth-of-type(5) {
-            width: 5%;
+            width: $expenseActionColWidth;
         }
         td:nth-of-type(1) {
-            width: 5%;
+            width: $expenseIdColWidth;
             text-align: center;
         }
         td:nth-of-type(2) {
-            width: 10%;
+            width: $expenseDateColWidth;
         }
         td:nth-of-type(3) {
-            width: 15%;
+            width: $expenseNameColWidth;
         }
         td:nth-of-type(4) {
-            width: 10%;
+            width: $expenseCostColWidth;
         }
         td:nth-of-type(5) {
-            width: 5%;
+            width: $expenseActionColWidth;
             text-align: center;
             position: relative;
             img {
                 position: absolute;
                 top: 25%;
                 left: 20%;
+                width: calc(10px + 0.5vw);
                 cursor: pointer;
                 margin-right: 0.2rem;
                 transition: 0.2s;
@@ -72,7 +74,7 @@
             }
             img:hover,
             {
-                width: 18px;
+                width: calc(12px + 0.5vw);
             }
         }
     }

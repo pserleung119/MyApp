@@ -1,8 +1,5 @@
 <div id="expenses-index">
-    <div id="greeting-msg" class="block">
-        Hello, <%= current_user.nickname %>
-    </div>
-
+    <button type="button" id="convert-rate" target="USD">Convert to USD</button>
     <div id="budget-setting" class="block">
         <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
             <%= label_tag 'budget-input', 'Your budget:' %>
@@ -33,11 +30,11 @@
                 <%= expense.name %>
             </td>
             <td>
-                ¥<%= expense.price %>
+                <span class="cost">¥<%= expense.price %></span>
             </td>
             <td>
-                <%= image_tag('ic_edit.png', width: '15', class: 'edit-expense', target: expense.id, row: row_id) %>
-                <%= link_to image_tag('ic_delete.png', width: '15'), "/expenses/#{expense.id}", method: :delete, data: { confirm: "Are you sure?" } %>
+                <%= image_tag('ic_edit.png', class: 'edit-expense', target: expense.id, row: row_id) %>
+                <%= link_to image_tag('ic_delete.png'), "/expenses/#{expense.id}", method: :delete, data: { confirm: "Are you sure?" } %>
                 <%= hidden_field_tag 'expensecategory_id', expense.expensecategory_id %>
             </td>
         </tr>
@@ -46,8 +43,8 @@
     </table>
 
     <div id="expenses-summary" class="block">
-        <p>Total amount spent this month: ¥<%= current_user.total_expenses_this_month %></p>
-        <p>Average daily budget for remaining days: ¥<%= current_user.average_daily_budget_for_remaining_days %></p>
+        <p>Total amount spent this month: <span class="total-cost">¥<%= current_user.total_expenses_this_month %></span></p>
+        <p>Average daily budget for remaining days: <span class="cost">¥<%= current_user.average_daily_budget_for_remaining_days %></span></p>
     </div>
     <% end %>
 

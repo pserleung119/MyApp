@@ -1,8 +1,4 @@
-$backgroundColor: #333333;
-$borderColor: #fff;
-$textActiveColor: #fff;
-$textDisabledColor: #777777;
-$headerHeight: 60px;
+@import "variables";
 
 body {
     margin: 0;
@@ -46,7 +42,7 @@ a:hover {
     height: 20px;
     margin: 0;
     padding: 1rem;
-    background: #59bd50;
+    background: $noticeColor;
     color: $textActiveColor;
 }
 
@@ -54,8 +50,12 @@ a:hover {
     height: 20px;
     margin: 0;
     padding: 1rem;
-    background: #bd5450;
+    background: $alertColor;
     color: $textActiveColor;
+}
+
+#redirect-to-homepage {
+    cursor: pointer;
 }
 
 #sign-out-link {
@@ -66,7 +66,7 @@ a:hover {
 
 #body {
     width: 100%;
-    padding: 2rem;
+    padding: 2rem 0;
 }
 
 .field {
