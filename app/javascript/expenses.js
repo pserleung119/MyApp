@@ -15,7 +15,7 @@ window.addEventListener("load", () => {
 
     $('#save-budget-btn').on('click', (event) => {
         event.preventDefault();
-        if (window.confirm('Changing your budget to ' + $('#budget-input').val())) {
+        if (window.confirm('Changing your budget to ¥' + $('#budget-input').val())) {
             $('#edit_user').submit();
         } else {
             return;
