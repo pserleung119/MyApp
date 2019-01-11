@@ -21,4 +21,19 @@ class User < ApplicationRecord
     remaining_days = (Time.current.end_of_month - Time.current) / (24 * 60 * 60).floor
     return ((budget - total_expenses_this_month) / remaining_days).floor
   end
+
+  def average_daily_budget_difference
+    difference = average_daily_budget_for_remaining_days - original_average_daily_budget
+    if difference.positive?
+      "(+¥#{difference.to_s})"
+    else
+      "(-¥#{difference.to_s})"
+    end
+  end
+
+  private
+  def original_average_daily_budget
+    days_this_month = (Time.current.end_of_month - Time.current.beginning_of_month) / (24 * 60 * 60).floor
+    return (budget / days_this_month).floor
+  end
 end

@@ -43,7 +43,7 @@
 
     <div id="expenses-summary" class="block">
         <p>Total amount spent this month: <span class="total-cost">¥<%= current_user.total_expenses_this_month %></span></p>
-        <p>Average daily budget for remaining days: <span class="cost">¥<%= current_user.average_daily_budget_for_remaining_days %></span></p>
+        <p>Average daily budget for remaining days: <span class="cost">¥<%= current_user.average_daily_budget_for_remaining_days %></span> <span class="cost"><%= current_user.average_daily_budget_difference %></span></p>
     </div>
     <% end %>
 
