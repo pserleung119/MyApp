@@ -21,8 +21,8 @@ class ExpensesController < ApplicationController
   def edit
   end
 
-  def update(id)
-    expense = Expense.find_by(id: id)
+  def update
+    expense = Expense.find_by(id: params[:id])
     if expense.present?
       expense.update!(
         name: params[:name],
@@ -36,10 +36,8 @@ class ExpensesController < ApplicationController
     redirect_to expenses_path
   end
 
-  def destroy(id)
-    Expense.transaction do
-      current_user.expenses.destroy!(id: id)
-    end
+  def destroy
+    Expense.destroy(params[:id])
     redirect_to expenses_path
   end
 

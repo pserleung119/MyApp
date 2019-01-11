@@ -1,0 +1,16 @@
+<div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+</div>
+<div class="field">
+    <%= f.label :spent_date %><br />
+    <%= f.date_field :spent_date %>
+</div>
+<div class="field">
+    <%= f.label :price %><br />
+    <%= f.number_field :price %>
+</div>
+<div class="field">
+    <%= f.label "Category" %><br />
+    <%= f.collection_select(:expensecategory_id, Expensecategory.all, :id, :name) %>
+</div>

@@ -37,7 +37,7 @@
             </td>
             <td>
                 <%= image_tag('ic_edit.png', width: '15', class: 'edit-expense', target: expense.id, row: row_id) %>
-                <%= link_to image_tag('ic_delete.png', width: '15'), expenses_path(id: expense.id), method: :delete, data: { confirm: "Are you sure?" } %>
+                <%= link_to image_tag('ic_delete.png', width: '15'), "/expenses/#{expense.id}", method: :delete, data: { confirm: "Are you sure?" } %>
                 <%= hidden_field_tag 'expensecategory_id', expense.expensecategory_id %>
             </td>
         </tr>
@@ -75,6 +75,28 @@
         <div class="actions">
             <%= button_tag "Back", type: "button", id: "back-to-expense-index-btn"%>
             <%= f.submit "Add expense" %>
+        </div>
+    <% end %>
+    <%= form_with(url: expenses_path, local: true, id: "edit-expense-form", method: "patch", class: "block") do |f| %>
+        <div class="field">
+            <%= f.label :name %><br />
+            <%= f.text_field :name %>
+        </div>
+        <div class="field">
+            <%= f.label :spent_date %><br />
+            <%= f.date_field :spent_date %>
+        </div>
+        <div class="field">
+            <%= f.label :price %><br />
+            <%= f.number_field :price %>
+        </div>
+        <div class="field">
+            <%= f.label "Category" %><br />
+            <%= f.collection_select(:expensecategory_id, Expensecategory.all, :id, :name) %>
+        </div>
+        <div class="actions">
+            <%= button_tag "Back", type: "button", id: "back-to-expense-index-btn"%>
+            <%= f.submit "Edit expense" %>
         </div>
     <% end %>
 </div>

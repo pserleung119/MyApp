@@ -7,7 +7,7 @@ Rails.application.routes.draw do
     sessions: 'users/sessions',
     passwords: 'users/passwords',
   }
-  resources :expenses
+  resources :expenses, only: [:index, :create, :update, :destroy]
 
   authenticated :user do
     root :to => 'home#index'
