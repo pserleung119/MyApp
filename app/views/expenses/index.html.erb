@@ -45,11 +45,11 @@
         <p>Total amount spent this month: <span class="total-cost" jpy="<%= current_user.total_expenses_this_month %>"></span></p>
         <p>Average daily budget for remaining days: <span class="cost" jpy="<%= current_user.average_daily_budget_for_remaining_days %>">¥<%= current_user.average_daily_budget_for_remaining_days %></span> <span class="diff-cost" jpy="<%= current_user.average_daily_budget_difference %>"></span></p>
     </div>
-    <% end %>
 
     <div id="convert-rate-field" class="block">
         <button type="button" id="convert-rate" target="USD">Convert to USD</button>
     </div>
+    <% end %>
 
     <div id="toggle-add-expense-field" class="block">
         <button id="new-expense-btn">New Expense</button>
