@@ -29,7 +29,7 @@
                 <%= expense.name %>
             </td>
             <td>
-                <span class="cost">¥<%= expense.price %></span>
+                <span class="cost" jpy="<%= expense.price %>"></span>
             </td>
             <td>
                 <%= image_tag('ic_edit.png', class: 'edit-expense', target: expense.id, row: row_id) %>
@@ -42,8 +42,8 @@
     </table>
 
     <div id="expenses-summary" class="block">
-        <p>Total amount spent this month: <span class="total-cost">¥<%= current_user.total_expenses_this_month %></span></p>
-        <p>Average daily budget for remaining days: <span class="cost">¥<%= current_user.average_daily_budget_for_remaining_days %></span> <span class="cost"><%= current_user.average_daily_budget_difference %></span></p>
+        <p>Total amount spent this month: <span class="total-cost" jpy="<%= current_user.total_expenses_this_month %>"></span></p>
+        <p>Average daily budget for remaining days: <span class="cost" jpy="<%= current_user.average_daily_budget_for_remaining_days %>">¥<%= current_user.average_daily_budget_for_remaining_days %></span> <span class="diff-cost" jpy="<%= current_user.average_daily_budget_difference %>"></span></p>
     </div>
     <% end %>
 

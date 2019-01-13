@@ -45,16 +45,18 @@ window.addEventListener("load", () => {
             return;
         }
         const currency = new Currency;
+        const roundDigit = 2;
         currency.getRate().then((data) => {
             const rate = data.JPY_USD.val;
             let convertedTotalCost = 0;
             for (let i = 0; i < $('.cost').length; i++) {
-                let baseCost = parseFloat($($('.cost')[i]).text().substr(1));
+                let baseCost = $($('.cost')[i]).attr('jpy');
                 let convertedCost = baseCost * rate;
                 convertedTotalCost = convertedTotalCost + convertedCost;
-                $($('.cost')[i]).text('$' + Math.round(convertedCost));
+                $($('.cost')[i]).text(`$${convertedCost.toFixed(roundDigit)}`);
             }
-            $('.total-cost').text('$' + Math.round(convertedTotalCost));
+            $('.total-cost').text(`$${convertedTotalCost.toFixed(roundDigit)}`);
+            $('.diff-cost').hide();
         }).catch((e) => {
             return;
         });
@@ -63,4 +65,18 @@ window.addEventListener("load", () => {
     let backToExpensesTable = () => {
         $('#greeting-msg, #convert-rate-field, #budget-setting, #expenses-table, #expenses-summary, #new-expense-btn').fadeIn('fast');
     }
+
+    let setExpenseInJPY = () => {
+        const diffCost = parseInt($('.diff-cost').attr('jpy')) < 0 ? `(- ¥${$('.diff-cost').attr('jpy')})` : `(+ ¥${$('.diff-cost').attr('jpy')})`
+        $('.cost').each((i, elem) => {
+            $(elem).text(`¥${$(elem).attr('jpy')}`);
+        })
+        $('.total-cost').text(`¥${$('.total-cost').attr('jpy')}`);
+        $('.diff-cost').text(diffCost).show();
+    }
+
+    let init = () => {
+        setExpenseInJPY();
+    }
+    init();
 },false)

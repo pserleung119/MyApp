@@ -23,12 +23,7 @@ class User < ApplicationRecord
   end
 
   def average_daily_budget_difference
-    difference = average_daily_budget_for_remaining_days - original_average_daily_budget
-    if difference.positive?
-      "(+¥#{difference.to_s})"
-    else
-      "(-¥#{difference.to_s})"
-    end
+    average_daily_budget_for_remaining_days - original_average_daily_budget
   end
 
   private

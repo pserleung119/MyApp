@@ -14,7 +14,6 @@ class ExpensesController < ApplicationController
         expensecategory_id: params[:expensecategory_id]
       )
     end
-    flash[:notice] = Settings.expenses.add_successfully
     redirect_to expenses_path
   end
 
@@ -30,8 +29,6 @@ class ExpensesController < ApplicationController
         spent_date: params[:spent_date],
         expensecategory_id: params[:expensecategory_id]
       )
-    else
-      flash[:alert] = Settings.expenses.add_successfully
     end
     redirect_to expenses_path
   end
