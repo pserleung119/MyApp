@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     passwords: 'users/passwords',
   }
   resources :expenses, only: [:index, :create, :update, :destroy]
+  resources :schedules, only: [:index, :create, :update, :destroy]
 
   authenticated :user do
     root :to => 'home#index'

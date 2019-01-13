@@ -4,6 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   has_many :expenses
+  has_many :schedules
 
   def expenses_this_month
     expenses.where(spent_date: Time.current.beginning_of_month..Time.current.end_of_month).order(spent_date: "ASC")
