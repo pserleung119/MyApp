@@ -4,7 +4,7 @@
 </div>
 <div class="field">
     <%= f.label :spent_date %><br />
-    <%= f.date_field :spent_date %>
+    <%= f.date_field :spent_date, value: Time.now.strftime("%Y-%m-%d")  %>
 </div>
 <div class="field">
     <%= f.label :price %><br />
