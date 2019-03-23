@@ -18,6 +18,8 @@ gem 'webpacker'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'mini_racer', platforms: :ruby
 
+gem "font-awesome-rails"
+
 gem 'config'
 gem 'devise'
 
