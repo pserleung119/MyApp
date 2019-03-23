@@ -1,6 +1,9 @@
 import Currency from './currency';
 
 window.addEventListener("load", () => {
+    if (!window.location.pathname.match(/\/expenses$/)) {
+        return;
+    }
     $('#new-expense-btn').on('click', () => {
         $('#greeting-msg, #convert-rate-field, #budget-setting, #expenses-table, #expenses-summary, #new-expense-btn').fadeOut('fast', () => {
             $('#add-expense-form').fadeIn();
