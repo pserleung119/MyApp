@@ -17,9 +17,6 @@ class ExpensesController < ApplicationController
     redirect_to expenses_path
   end
 
-  def edit
-  end
-
   def update
     expense = Expense.find_by(id: params[:id])
     if expense.present?
